@@ -1,0 +1,98 @@
+---
+layout: archive
+title: "Labor 1 - Sakktábla"
+permalink: /lab1/
+author_profile: true
+---
+
+<!-- _pages/lab1.html -->
+
+<style>
+  /* 5. Feladat 3 - Sakktábla stílusok kizárólag itt */
+  #sakktabla {
+    width: min(80vw, 520px);
+    height: min(80vw, 520px);
+    margin: 40px auto;
+    border-collapse: collapse;
+    border: 8px solid #4a2e18;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    background-color: #f0d9b5;
+  }
+
+  #sakktabla tr {
+    height: 12.5%;
+  }
+
+  #sakktabla td {
+    width: 12.5%;
+    height: 12.5%;
+    padding: 0;
+    text-align: center;
+    background-color: #f0d9b5;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+
+  /* Sötét mezők beállítása (váltakozó minta) */
+  #sakktabla tr:nth-child(odd) td:nth-child(even),
+  #sakktabla tr:nth-child(even) td:nth-child(odd) {
+    background-color: #b58863;
+  }
+
+  /* Pluszpont: Interaktív lebegés és fókusz */
+  #sakktabla td:hover {
+    filter: brightness(1.2);
+    transform: scale(1.04);
+    cursor: pointer;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Pluszpont: Sötét mód / magas kontraszt */
+  @media (prefers-color-scheme: dark) {
+    #sakktabla {
+      border-color: #222;
+      box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1);
+    }
+    #sakktabla td {
+      background-color: #dedede;
+    }
+    #sakktabla tr:nth-child(odd) td:nth-child(even),
+    #sakktabla tr:nth-child(even) td:nth-child(odd) {
+      background-color: #333333;
+    }
+  }
+</style>
+
+<table id='sakktabla' cellspacing=0>
+  <tr>
+    <td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
+  </tr>
+</table>
