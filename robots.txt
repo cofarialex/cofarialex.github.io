@@ -1,0 +1,5 @@
+# Minden keresőrobot bejárhatja az oldalt
+User-agent: *
+Allow: /
+
+Sitemap: https://cofarialex.github.io/sitemap.xml

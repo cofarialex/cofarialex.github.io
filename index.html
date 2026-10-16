@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!-- HTML5 doctype (a régi XHTML 1.0 helyett). A lang="en" megmondja a Google-nek, hogy az oldal alapnyelve angol. -->
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+
+<!-- ======================= SEO =======================
+     Ezek a sorok nem látszanak az oldalon, a keresőknek és a közösségi oldalaknak szólnak.
+     A tanár sorai (abstract, reply-to, revisit-after, no-cache...) törölve: elavultak voltak, vagy róla szóltak. -->
+
+<!-- A kék cím a Google találati listában (max. ~60 karakter) -->
+<title>Cofari Alex Daniel | Informatics Student | CV</title>
+<!-- A szürke leírás a cím alatt (max. ~155 karakter) -->
+<meta name="description" content="Cofari Alex Daniel – informatics student at UMFST Targu Mures. Web design, front-end, Laravel and databases. Resume, skills, projects and contact." />
+<meta name="keywords" content="Cofari Alex Daniel, cofarialex, CV, resume, informatics student, UMFST, Targu Mures, web design, front-end, Laravel, SQL" />
+<meta name="author" content="Cofari Alex Daniel" />
+<!-- index = jelenjen meg a keresőben, follow = a linkjeit is kövesse -->
+<meta name="robots" content="index, follow" />
+<!-- Az oldal "hivatalos" címe (így nem számít duplikátumnak pl. a /index.html változat) -->
+<link rel="canonical" href="https://cofarialex.github.io/" />
+
+<!-- Open Graph: így néz ki a link, ha Facebookon / Messengeren / Instagramon megosztod -->
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Cofari Alex Daniel – Informatics Student" />
+<meta property="og:description" content="Web design, front-end, Laravel and databases. Resume, skills and projects." />
+<meta property="og:url" content="https://cofarialex.github.io/" />
+<meta property="og:image" content="https://cofarialex.github.io/img/profil.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="hu_HU" />
+<meta property="og:locale:alternate" content="ro_RO" />
+<meta property="profile:first_name" content="Alex Daniel" />
+<meta property="profile:last_name" content="Cofari" />
+<meta name="twitter:card" content="summary" />
+
+<!-- Strukturált adat (JSON-LD): ebből a Google "érti meg", hogy ez egy személy oldala, és ki ő -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Cofari Alex Daniel",
+  "jobTitle": "Informatics Student",
+  "url": "https://cofarialex.github.io/",
+  "image": "https://cofarialex.github.io/img/profil.jpg",
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "George Emil Palade University of Medicine, Pharmacy, Science, and Technology of Targu Mures (UMFST)" },
+    { "@type": "HighSchool", "name": "Liceul Tehnologic Domokos Kazmer, Sovata" }
+  ],
+  "knowsLanguage": ["ro", "hu", "en", "de"],
+  "knowsAbout": ["Web design", "HTML", "CSS", "Java", "C++", "C#", "Laravel", "SQL"],
+  "sameAs": [
+    "https://github.com/cofarialex",
+    "https://www.instagram.com/cofarialex1/",
+    "https://www.facebook.com/share/19hC1T6PNX/"
+  ]
+}
+</script>
+<!-- Mobilon is helyes méretben jelenjen meg (az eredetiből hiányzott) -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- A böngésző felső sávjának színe telefonon -->
+<meta name="theme-color" content="#14181d" />
+
+<!-- Ez a pár sor a CSS előtt fut le, így a választott téma (világos/sötét) nem "villan" betöltéskor -->
+<script>
+  try { if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
+
+<!-- ======================= CSS =======================
+     A sorrend számít: előbb az alapok (reset, text, rács), a végén a saját stílusunk felülírja őket. -->
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/text.css" />
+<link rel="stylesheet" href="css/960_24_col.css" />
+<link rel="stylesheet" href="css/jquery.lightbox-0.5.css" media="screen" />
+<link rel="stylesheet" href="css/styles.css" /><!-- régen: sytles.css (elírás) -->
+
+<!-- Betűtípusok: Space Grotesk (címek) + Inter (szöveg). Fontos: https, nem http! -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+
+<!-- ======================= GOOGLE ANALYTICS 4 =======================
+     A G-XXXXXXXXXX helyére a SAJÁT mérési azonosítód jön (analytics.google.com).
+     Amíg nincs kitöltve, a kód nem tölt be semmit, így nincs hiba a konzolban. -->
+<script>
+  var GA_ID = 'G-1HC3R3EVM9';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  if (GA_ID.indexOf('XXXX') === -1) {
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(ga);
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+  }
+</script>
+</head>
+
+<body>
+
+<!-- ======================= FEJLÉC ======================= -->
+<div id="header">
+	<!-- NYELVVÁLTÓ: a gombok data-lang értéke mondja meg a js/lang.js-nek, melyik nyelvre váltson -->
+	<div class="lang_switch" role="group" aria-label="Language">
+		<button type="button" data-lang="en">EN</button>
+		<button type="button" data-lang="hu">HU</button>
+		<button type="button" data-lang="ro">RO</button>
+	</div>
+
+	<!-- VILÁGOS / SÖTÉT TÉMA váltó (js/main.js) -->
+	<button type="button" id="theme_toggle" title="Light / dark theme" aria-label="Light / dark theme">
+		<svg class="icon_sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-5a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 17a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM3 11h1a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2Zm17 0h1a1 1 0 1 1 0 2h-1a1 1 0 1 1 0-2ZM5.64 4.22l.7.71a1 1 0 0 1-1.41 1.41l-.71-.7a1 1 0 0 1 1.42-1.42Zm13.43 13.43.71.7a1 1 0 0 1-1.42 1.42l-.7-.71a1 1 0 0 1 1.41-1.41ZM4.22 18.36l.71-.7a1 1 0 0 1 1.41 1.41l-.7.71a1 1 0 0 1-1.42-1.42ZM17.66 4.93l.7-.71a1 1 0 0 1 1.42 1.42l-.71.7a1 1 0 0 1-1.41-1.41Z"/></svg>
+		<svg class="icon_moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+	</button>
+
+	<ul class="social_panel">
+				<!-- Ikonok SVG-ben: kódból rajzolódnak ki, a színüket a CSS adja (fill: currentColor) -->
+				<li><a href="https://github.com/cofarialex" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+					<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a></li>
+				<li><a href="https://www.instagram.com/cofarialex1/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+					<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0Zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></a></li>
+				<li><a href="https://www.facebook.com/share/19hC1T6PNX/" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook">
+					<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07Z"/></svg></a></li>
+            </ul>
+</div><!-- End Header -->
+
+
+<!-- ======================= TARTALOM =======================
+     A 960-as rács: egy sor 24 oszlop. pl. grid_10 = 10 oszlop széles.
+     A "spacer" osztályú oszlopok csak üres helykitöltők (mobilon el is tűnnek). -->
+<div class="container_24">
+
+<!-- ===== 1. sor: név | elérhetőség ===== -->
+<div class="grid_1 spacer"><div class="holder"></div></div>
+
+<div class="grid_9">
+	<div id="name_tittle">
+		<!-- Az oldalon csak EGY h1 van: a név (SEO) -->
+		<h1>Cofari Alex Daniel</h1>
+		<ul>
+			<li data-i18n="role">Informatics Student</li>
+		</ul>
+	</div>
+</div>
+
+<div class="grid_3 spacer"><div class="holder"></div></div>
+<div class="grid_1 spacer"><div class="holder"></div></div>
+
+<!-- CONTACT LIST
+     Javítás: itt volt egy <div class="icon_list">, ami SOHA nem volt lezárva,
+     ezért az egész oldalt "magába nyelte". Törölve. -->
+<div class="grid_7">
+	<div class="work_list">
+		<p class="available" data-i18n="available">AVAILABLE FOR:</p>
+		<h3 data-i18n="available_for">TEAM PROJECTS, STUDENT JOBS</h3>
+
+		<h2>GitHub</h2>
+		<ul><li><a target="_blank" rel="noopener" title="GitHub profile" href="https://github.com/cofarialex">github.com/cofarialex</a></li></ul>
+
+		<h2 class="cv_download" data-i18n="download_cv">Download CV</h2>
+		<!-- Nincs külön PDF fájl: a gomb kinyomtatja / PDF-be menti az oldalt
+		     a KIVÁLASZTOTT nyelven (a nyomtatási stílus a styles.css végén van) -->
+		<ul class="cv_download"><li><a href="#" id="print_cv"><span data-i18n="print_cv">Save as PDF</span> ↓</a></li></ul>
+	</div>
+</div>
+<div class="grid_1 spacer"><div class="holder"></div></div>
+<div class="clear"></div>
+
+
+<!-- ===== 2. sor: bal oszlop | függőleges vonal | jobb oszlop ===== -->
+<div class="grid_1 spacer"><div class="holder"></div></div>
+
+<!-- BAL OSZLOP -->
+<div class="grid_10">
+
+	<!-- PERSONAL STATEMENT -->
+	<h2 class="ribbon2" data-i18n="h_statement">Personal Statement</h2>
+	<img class="floatLeft" src="img/profil.jpg" alt="Cofari Alex Daniel" width="120" height="160" />
+	<div class="item">
+		<p data-i18n="statement">Informatics student at UMFST Targu Mures with a passion for design. I enjoy creating clean, user-friendly interfaces and turning ideas into good-looking, working web pages. Besides the front-end, I like working with databases and the logic behind them (Laravel, SQL). Motivated, curious and a reliable team player, I am looking for team projects and student jobs where I can learn and grow.</p>
+	</div>
+
+	<!-- SUMMARY
+	     Javítás: a tanárnál itt egy grid_10 egy MÁSIK grid_10-en belül volt (rossz rács-használat),
+	     és üres <div><br><br></div> adta a térközt. Most sima div + CSS margó. -->
+	<h2 class="ribbon2" data-i18n="h_summary">Summary</h2>
+	<div class="item"><p data-i18n="summary_intro">What I have worked with so far:</p></div>
+	<div class="why_me">
+		<ul>
+			<li data-i18n="sum1">Interface design and front-end development (HTML, CSS)</li>
+			<li data-i18n="sum2">Back-end web development with Laravel (PHP)</li>
+			<li data-i18n="sum3">Database design and SQL queries</li>
+			<li data-i18n="sum4">Object-oriented programming in Java and C#</li>
+			<li data-i18n="sum5">Algorithms and data structures in C++</li>
+			<li data-i18n="sum6">Photo and video editing</li>
+		</ul>
+	</div>
+	<div class="item it_interests"><p data-i18n="it_interests"><b>Interests in IT</b>: UI Design » Front-end » Databases » Laravel » Web Applications » Video Editing</p></div>
+
+	<!-- EDUCATION -->
+	<h2 class="ribbon2" data-i18n="h_education">Education</h2>
+	<div class="item_tittle">
+		<h3><a target="_blank" rel="noopener" title="Universitatea de Medicină, Farmacie, Științe și Tehnologie George Emil Palade din Târgu Mureș (UMFST)" href="https://umfst.ro">UMFST G.E. Palade Targu Mures</a> <span class="year">2023 - 2027</span></h3>
+		<h4 data-i18n="edu1_sub">Informatics | Targu Mures, Romania</h4>
+		<div class="item"><p data-i18n="edu1_desc"><b>Bachelor's degree (BSc)</b> | Informatics | In progress</p></div>
+	</div>
+	<div class="item_tittle">
+		<h3><a target="_blank" rel="noopener" title="Liceul Tehnologic Domokos Kázmér, Sovata" href="https://www.domokoskazmer.ro/index.php/ro/">Liceul Tehnologic Domokos Kazmer</a> <span class="year">2019 - 2023</span></h3>
+		<h4 data-i18n="edu2_sub">Mathematics - Informatics | Sovata, Romania</h4>
+		<div class="item"><p data-i18n="edu2_desc"><b>Baccalaureate</b> | Mathematics - Informatics profile</p></div>
+	</div>
+
+	<!-- LANGUAGES -->
+	<h2 class="ribbon2" data-i18n="h_languages">Languages</h2>
+	<div class="why_me">
+		<ul>
+			<li data-i18n="lang1"><b>Romanian</b> (Native)</li>
+			<li data-i18n="lang2"><b>Hungarian</b> (Native)</li>
+			<li data-i18n="lang3"><b>English</b> (Advanced)</li>
+			<li data-i18n="lang4"><b>German</b> (Beginner)</li>
+		</ul>
+	</div>
+
+	<!-- INTERESTS -->
+	<h2 class="ribbon2" data-i18n="h_interests">Interests</h2>
+	<div class="why_me">
+		<ul>
+			<li data-i18n="int1">Mountain biking</li>
+			<li data-i18n="int2">Running</li>
+			<li data-i18n="int3">Photography and videography</li>
+			<li data-i18n="int4">Video editing</li>
+		</ul>
+	</div>
+</div>
+
+<div class="grid_2 spacer"><div class="vertical_line"></div></div>
+
+<!-- JOBB OSZLOP -->
+<div class="grid_10">
+
+	<!-- SKILLS
+	     Bal oldalt a nevek, jobb oldalt a sávok: a SORRENDJÜK összetartozik.
+	     A százalékot a title adja meg, a js/main.js animálja ki, amikor görgetéskor láthatóvá válik.
+	     (A cms, seo, php... osztálynevek a tanártól maradtak, a CSS-ben mind ugyanúgy néznek ki.) -->
+	<h2 class="ribbon2" data-i18n="h_skills">Skills</h2>
+	<div id="technical_skill">
+		<div id="skill_list2">
+			<ul>
+				<li>HTML</li>
+				<li>CSS</li>
+				<li>Java</li>
+				<li>C++</li>
+				<li>C#</li>
+				<li>Laravel</li>
+				<li>SQL</li>
+				<li>Git</li>
+			</ul>
+		</div>
+		<div id="skill_set">
+			<ul>
+				<li><div class="progress_container"><div class="cms tip" title="70%"></div></div></li>
+				<li><div class="progress_container"><div class="seo tip" title="65%"></div></div></li>
+				<li><div class="progress_container"><div class="php tip" title="75%"></div></div></li>
+				<li><div class="progress_container"><div class="html tip" title="70%"></div></div></li>
+				<li><div class="progress_container"><div class="css tip" title="60%"></div></div></li>
+				<li><div class="progress_container"><div class="progress_bar tip" title="60%"></div></div></li>
+				<li><div class="progress_container"><div class="flash tip" title="60%"></div></div></li>
+				<li><div class="progress_container"><div class="java tip" title="50%"></div></div></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- EXPERIENCE & PROJECTS -->
+	<h2 class="ribbon2" data-i18n="h_experience">Experience &amp; Projects</h2>
+
+	<div class="item_tittle">
+		<h3><span data-i18n="exp1_title">Summer Internship</span> <span class="year">2025</span></h3>
+		<h4 data-i18n="exp1_sub">Intern | Targu Mures, Romania</h4>
+	</div>
+	<div class="item"><p data-i18n="exp1_desc">Summer internship during my university studies, where I gained practical, hands-on experience in a professional work environment.</p></div>
+
+	<div class="item_tittle">
+		<h3>Trivia Battle <span class="year">2026</span></h3>
+		<h4 data-i18n="exp2_sub">Web application | University project</h4>
+	</div>
+	<div class="item"><p data-i18n="exp2_desc">Quiz game web application built for the Web Applications course. Focus on a clean, user-friendly interface and the game logic behind it.</p></div>
+
+	<div class="item_tittle">
+		<h3><span data-i18n="exp3_title">Personal CV Website</span> <span class="year">2026</span></h3>
+		<h4 data-i18n="exp3_sub">Web project | GitHub Pages</h4>
+	</div>
+	<div class="item"><p data-i18n="exp3_desc">This website: HTML, CSS and JavaScript, with a contact form, photo gallery and Google Analytics.</p></div>
+</div>
+
+<div class="grid_1 spacer"><div class="holder"></div></div>
+<div class="clear"></div>
+
+
+<!-- ===== 3. sor: GALÉRIA, albumokkal ===== -->
+<div class="grid_1 spacer"><div class="holder"></div></div>
+<div class="grid_22">
+	<h2 class="ribbon_portfolio" data-i18n="h_gallery">Gallery</h2>
+
+	<!-- ALBUM GOMBOK: a gomb data-album értéke = a képek data-album értéke. "all" = minden kép. -->
+	<div class="album_tabs" role="group" aria-label="Albums">
+		<button type="button" class="album_tab active" data-album="all" data-i18n="album_all">All</button>
+		<button type="button" class="album_tab" data-album="bike" data-i18n="album_bike">Mountain bike</button>
+		<button type="button" class="album_tab" data-album="photo" data-i18n="album_photo">Photography</button>
+	</div>
+</div>
+<div class="grid_1 spacer"><div class="holder"></div></div>
+
+<div class="grid_24"><!-- GALLERY -->
+	<div id="gallery">
+		<!-- Új kép: tedd a fájlt a gallery mappába, és másolj le egy <li> blokkot.
+		     data-album = melyik albumba tartozik; href = a nagy kép; title = a felirat a nagy kép alatt. -->
+		<ul>
+			<li data-album="bike">
+				<a href="gallery/photo-1.jpg" title="Photo 1"><img src="gallery/photo-1.jpg" alt="Photo 1" width="200" height="140" loading="lazy" /></a>
+			</li>
+			<li data-album="bike">
+				<a href="gallery/photo-2.jpg" title="Photo 2"><img src="gallery/photo-2.jpg" alt="Photo 2" width="200" height="140" loading="lazy" /></a>
+			</li>
+			<li data-album="photo">
+				<a href="gallery/photo-3.jpg" title="Photo 3"><img src="gallery/photo-3.jpg" alt="Photo 3" width="200" height="140" loading="lazy" /></a>
+			</li>
+			<li data-album="photo">
+				<a href="gallery/photo-4.jpg" title="Photo 4"><img src="gallery/photo-4.jpg" alt="Photo 4" width="200" height="140" loading="lazy" /></a>
+			</li>
+		</ul>
+	</div>
+</div><!-- END OF GALLERY -->
+
+
+<div class="grid_24"><div class="horisontal_line"></div></div>
+
+<!-- ===== 4. sor: miért én | vonal | kapcsolat ===== -->
+<div class="grid_1 spacer"><div class="holder"></div></div>
+
+<div class="grid_10">
+	<h2 class="ribbon2" data-i18n="h_why">Why We Should Work Together</h2>
+	<div class="why_me">
+		<ul>
+			<li data-i18n="why1">Creative eye for design and attention to detail</li>
+			<li data-i18n="why2">Team player, but also able to work independently</li>
+			<li data-i18n="why3">Fast learner, curious about new technologies</li>
+			<li data-i18n="why4">Reliable and respects deadlines</li>
+			<li data-i18n="why5">Communicates in Romanian, Hungarian and English</li>
+		</ul>
+	</div>
+</div>
+
+<div class="grid_2 spacer"><div class="vertical_line2"></div></div>
+
+<div class="grid_10">
+	<h2 class="ribbon2" data-i18n="h_contact">Contact Me</h2>
+
+	<!-- ======================= KAPCSOLAT ŰRLAP =======================
+	     A tanárnál ki volt kommentezve, ráadásul a komment hibásan volt lezárva.
+	     A GitHub Pages nem futtat szerveroldali kódot (PHP), ezért a levelet az EmailJS küldi el,
+	     a robotok ellen pedig a láthatatlan Google reCAPTCHA véd. Kód: js/contact.js
+	     A name="..." értékek egyeznek az EmailJS sablon változóival: {{from_name}}, {{from_email}}, {{message}} -->
+	<p class="form_intro" data-i18n="form_intro">Have a project or a job offer? Send me a message!</p>
+	<form id="contact-form" novalidate="novalidate">
+		<label for="from_name" data-i18n="f_name">Name</label>
+		<input type="text" id="from_name" name="from_name" autocomplete="name" required="required" maxlength="80" />
+
+		<label for="from_email" data-i18n="f_email">E-mail</label>
+		<input type="email" id="from_email" name="from_email" autocomplete="email" required="required" maxlength="120" />
+
+		<label for="message" data-i18n="f_message">Message</label>
+		<textarea id="message" name="message" rows="5" required="required" maxlength="2000"></textarea>
+
+		<!-- Robotcsapda (honeypot): ember nem látja, de a robot kitölti, és akkor nem küldjük el -->
+		<div class="hp" aria-hidden="true">
+			<label for="website">Website</label>
+			<input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+		</div>
+
+		<!-- Ide "rajzolja" a Google a láthatatlan reCAPTCHA-t -->
+		<div id="recaptcha"></div>
+
+		<button type="submit" class="submit-button" data-i18n="f_send">Send</button>
+		<p id="form-status" role="status" aria-live="polite"></p>
+		<p class="recaptcha_note" data-i18n="f_recaptcha">This site is protected by reCAPTCHA. The Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.</p>
+	</form>
+
+	<div class="item_tittle">
+		<h4 data-i18n="social">Social Profiles</h4>
+	</div>
+	<p class="profile_links">
+		<a target="_blank" rel="noopener" href="https://github.com/cofarialex">GitHub</a>
+		<a target="_blank" rel="noopener" href="https://www.instagram.com/cofarialex1/">Instagram</a>
+		<a target="_blank" rel="noopener" href="https://www.facebook.com/share/19hC1T6PNX/">Facebook</a>
+	</p>
+</div>
+
+<div class="grid_1 spacer"><div class="holder"></div></div>
+<div class="clear"></div>
+
+<div class="grid_24"><div class="horisontal_line"></div></div>
+
+<!-- LÁBLÉC: az évszámot a JS írja be, így mindig aktuális -->
+<div class="grid_24 site_footer">
+	<p>&copy; <span id="year">2026</span> Cofari Alex Daniel · <span data-i18n="footer">Built with HTML, CSS &amp; JavaScript · Hosted on GitHub Pages</span></p>
+</div>
+<div class="clear"></div>
+
+</div><!-- END .CONTAINER_24 -->
+
+<!-- Fel / le gombok (a tanár ötlete, a js/main.js kezeli) -->
+<div class="nav_up" id="nav_up" title="Top"></div>
+<div class="nav_down" id="nav_down" title="Bottom"></div>
+
+
+<!-- ======================= JAVASCRIPT =======================
+     Javítás: a tanárnál a scroll-startstop plugin a jQuery ELŐTT töltődött be -> hiba.
+     A sorrend: előbb a jQuery, utána a rá épülő pluginek, végül a saját kódunk.
+     A lap aljára tettük őket, így előbb megjelenik a tartalom. -->
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/scroll-startstop.events.jquery.js"></script>
+<script src="js/jquery.tips.js"></script>
+<script src="js/jquery.lightbox-0.5.js"></script>
+<!-- EmailJS: ez küldi el a leveleket (a contact.js használja) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+<!-- Saját kódok: nyelvváltó, az oldal funkciói, kapcsolat űrlap -->
+<script src="js/lang.js"></script>
+<script src="js/main.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>

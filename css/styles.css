@@ -1,0 +1,618 @@
+/* ==========================================================================
+   styles.css – Cofari Alex Daniel CV oldal
+   (régi neve: "sytles.css", ez elírás volt, ezért átneveztük)
+
+   Betöltési sorrend az index.html-ben:
+     reset.css -> text.css -> 960_24_col.css -> styles.css -> jquery.lightbox
+   A 960-as rácsot (grid_1 ... grid_24) megtartottuk, ez adja az oldal vázát.
+   Ez a fájl csak a KINÉZETET adja: színek, betűk, keretek, árnyékok.
+
+   STÍLUS: sötét, modern ("dark mode"), türkiz + narancs kiemeléssel.
+   ========================================================================== */
+
+
+/* ---------- 1. SZÍNEK – CSS VÁLTOZÓK ----------
+   A változókat egyszer adjuk meg, utána var(--nev) formában használjuk.
+   Ha más színt szeretnél, ELÉG CSAK ITT átírni, és mindenhol megváltozik. */
+:root {
+  --bg:        #14181d;   /* az oldal háttere (majdnem fekete) */
+  --card:      #1e242b;   /* a "kártya", amin a tartalom van */
+  --card-2:    #252c34;   /* kicsit világosabb: sávok háttere, keretek */
+  --line:      #2f3741;   /* vonalak, elválasztók */
+  --text:      #e6e9ec;   /* fő szövegszín */
+  --muted:     #9aa4ae;   /* halványabb szöveg (leírások) */
+  --accent:    #2ec4b6;   /* fő kiemelő szín: türkiz */
+  --accent-2:  #ff9f1c;   /* második kiemelő szín: narancs (évszámok) */
+  --on-accent: #14181d;   /* szöveg a türkiz háttéren (pl. aktív gomb) */
+  --ok:        #4ade80;   /* sikeres üzenet (zöld) */
+  --error:     #f87171;   /* hibaüzenet (piros) */
+
+  --font-head: 'Space Grotesk', Arial, sans-serif;  /* címek */
+  --font-body: 'Inter', Arial, Helvetica, sans-serif; /* szöveg */
+
+  --radius: 12px;
+  --shadow: 0 20px 50px -20px rgba(0, 0, 0, .7);
+  color-scheme: dark;     /* a böngésző saját elemei (görgetősáv, űrlapmezők) is sötétek legyenek */
+}
+
+/* VILÁGOS TÉMA: ugyanazok a változók, más értékekkel.
+   A js/main.js teszi rá a <html> elemre a data-theme="light" attribútumot. */
+[data-theme="light"] {
+  --bg:        #e9edf1;
+  --card:      #ffffff;
+  --card-2:    #e8ecf0;
+  --line:      #d9dfe5;
+  --text:      #1d232a;
+  --muted:     #5b6670;
+  --accent:    #0f9488;   /* sötétebb türkiz, hogy fehér háttéren is jól olvasható legyen */
+  --accent-2:  #d97706;
+  --on-accent: #ffffff;
+  --ok:        #15803d;
+  --error:     #dc2626;
+  --shadow: 0 20px 50px -25px rgba(20, 30, 40, .35);
+  color-scheme: light;
+}
+
+
+/* ---------- 2. ALAP ---------- */
+body {
+  /* két halvány színes "fényfolt" a háttérben + a sötét alapszín */
+  background:
+    radial-gradient(circle at 15% 0%, rgba(46, 196, 182, .12), transparent 40%),
+    radial-gradient(circle at 90% 30%, rgba(255, 159, 28, .07), transparent 35%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 30px 0;
+}
+
+a, a:link, a:visited {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .2s;          /* a szín finoman vált, nem egyszerre */
+}
+a:hover { color: var(--accent); }
+
+p { padding: 10px 0; }
+
+/* kijelölt szöveg színe (próbáld ki: jelölj ki egy szöveget az oldalon) */
+::selection { background: var(--accent); color: var(--on-accent); }
+
+
+/* ---------- 3. FEJLÉC ----------
+   Régen ez egy kép volt (img/resume.png), ezért nem lehetett átszínezni.
+   Most tisztán CSS, a "RESUME" feliratot a ::before teszi ki. */
+#header {
+  position: relative;
+  width: 960px;
+  height: 64px;
+  margin: auto;
+  background: var(--card);
+  border-radius: var(--radius) var(--radius) 0 0;   /* csak a felső sarkok kerekek */
+  border-bottom: 1px solid var(--line);
+}
+#header::before {
+  content: "RESUME";
+  position: absolute;
+  left: 40px; top: 18px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 700 13px/1 var(--font-head);
+  letter-spacing: 3px;
+}
+
+.social_panel {
+  float: right;
+  padding: 18px 40px 0 0;
+  list-style: none;
+}
+.social_panel li {
+  float: left;
+  margin-left: 12px;
+  list-style: none;
+}
+.social_panel a { display: block; color: var(--muted); }
+.social_panel svg {
+  display: block;
+  fill: currentColor;            /* az ikon színe = a link színe (color) */
+  transition: color .2s, transform .2s;
+}
+.social_panel a:hover { color: var(--accent); }
+.social_panel a:hover svg { transform: translateY(-3px); }
+
+/* NYELVVÁLTÓ GOMBOK (EN / HU / RO) */
+.lang_switch {
+  position: absolute;
+  right: 208px; top: 17px;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 20px;
+  background: var(--card-2);
+}
+.lang_switch button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: 600 12px var(--font-body);
+  padding: 5px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.lang_switch button:hover { color: var(--text); }
+.lang_switch button.active {            /* a kiválasztott nyelv (a JS teszi rá az "active" osztályt) */
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* TÉMA VÁLTÓ GOMB (nap / hold ikon) */
+#theme_toggle {
+  position: absolute;
+  right: 160px; top: 16px;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--card-2);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color .2s, transform .3s;
+}
+#theme_toggle:hover { color: var(--accent); transform: rotate(20deg); }
+#theme_toggle svg { fill: currentColor; }
+/* sötét témában a nap látszik (arra lehet váltani), világosban a hold */
+#theme_toggle .icon_moon { display: none; }
+[data-theme="light"] #theme_toggle .icon_sun  { display: none; }
+[data-theme="light"] #theme_toggle .icon_moon { display: block; }
+
+/* billentyűzettel navigálóknak jól látható fókusz */
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+
+/* ---------- 4. A FŐ "KÁRTYA" ---------- */
+.container_24 {
+  background: var(--card);
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 0 30px;
+}
+.holder { overflow: hidden; padding: 10px 0; }
+
+
+/* ---------- 5. NÉV ÉS TITULUS ---------- */
+#name_tittle h1 {
+  font-family: var(--font-head);
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 10px;
+  /* színátmenetes szöveg: a háttér átmenet, és csak a betűk "látszanak át" rajta */
+  background: linear-gradient(90deg, var(--text), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+#name_tittle ul {
+  list-style: none;
+  margin: 14px 0 0;
+}
+#name_tittle li {
+  margin: 0;
+  font: 500 22px var(--font-head);
+  color: var(--muted);
+}
+/* kis türkiz vonal a titulus előtt */
+#name_tittle li::before {
+  content: "";
+  display: inline-block;
+  width: 28px; height: 3px;
+  margin: 0 10px 6px 0;
+  background: var(--accent);
+  vertical-align: middle;
+}
+
+
+/* ---------- 6. ELÉRHETŐSÉGEK (jobb felső blokk) ---------- */
+.work_list {
+  float: left;
+  margin: 0 0 0 -70px;
+  text-align: left;
+}
+.work_list .available {
+  font: 500 13px var(--font-body);
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin: 0 0 4px 30px;
+  padding: 0;
+}
+.work_list h3 {
+  font: 700 18px var(--font-head);
+  color: var(--accent);
+  margin: 0 0 10px 30px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  width: 390px;
+}
+.work_list h2 {
+  font: 600 15px var(--font-head);
+  color: var(--text);
+  margin: 10px 0 0 30px;
+}
+.work_list ul {
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.work_list li {
+  border-bottom: 1px solid var(--line);
+  width: 390px;
+}
+.work_list a { margin-right: 8px; }
+
+
+/* ---------- 7. SZEKCIÓCÍMEK ---------- */
+.ribbon2,
+.ribbon_portfolio {
+  font: 700 26px var(--font-head);
+  color: var(--text);
+  margin: 24px 0 8px;
+  width: 390px;
+}
+.ribbon_portfolio { width: 865px; }
+/* rövid türkiz vonal a cím alatt (::after = egy "kitalált" elem a cím után) */
+.ribbon2::after,
+.ribbon_portfolio::after {
+  content: "";
+  display: block;
+  width: 44px; height: 3px;
+  margin-top: 6px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+
+/* ---------- 8. SZÖVEGEK, LISTÁK ---------- */
+.item p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: left;               /* a sorkizárt (justify) szöveg rosszul olvasható volt */
+}
+.item p b { color: var(--text); font-weight: 600; }
+
+.why_me ul {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 12px 0 0 -12px;
+  list-style: none;
+  width: 372px;
+}
+.why_me li::before {              /* saját listajel: türkiz nyíl */
+  content: "▹";
+  color: var(--accent);
+  margin-right: 8px;
+}
+.why_me b { color: var(--text); font-weight: 600; }
+
+/* profilkép */
+img.floatLeft {
+  float: left;
+  width: 120px; height: 160px;
+  object-fit: cover;              /* a kép nem torzul */
+  margin: 10px 20px 10px 0;
+  padding: 0;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 25px -10px rgba(46, 196, 182, .5);
+}
+
+
+/* ---------- 9. ISKOLÁK, MUNKÁK (item_tittle) ----------
+   A tanárnál ezek <h1>/<h2> címek voltak, de SEO miatt egy oldalon csak 1 db h1 legyen.
+   Most: h3 = iskola/munkahely neve, h4 = alcím. */
+.item_tittle h3 {
+  font: 600 19px var(--font-head);
+  color: var(--text);
+  padding: 14px 0 0;
+  text-transform: none;
+}
+.item_tittle h3 a { color: var(--text); }
+.item_tittle h3 a:hover { color: var(--accent); }
+/* évszám "címke" */
+.item_tittle h3 span.year {
+  float: right;
+  margin-top: 2px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--accent-2);
+  color: var(--accent-2);
+  font: 600 12px var(--font-body);
+}
+.item_tittle h4 {
+  font: 500 14px var(--font-body);
+  color: var(--accent);
+  margin-top: 2px;
+  text-align: left;
+}
+
+
+/* ---------- 10. ELVÁLASZTÓ VONALAK (régen képek voltak) ---------- */
+.vertical_line,
+.vertical_line2 {
+  width: 0;
+  height: 600px;
+  margin: 43px auto 0;
+  border-left: 1px solid var(--line);
+}
+.vertical_line2 { height: 560px; margin-top: 24px; }
+.horisontal_line {
+  height: 0;
+  width: 870px;
+  margin: 30px auto;
+  border-top: 1px solid var(--line);
+}
+
+
+/* ---------- 11. KÉSZSÉGEK – PROGRESS BAR ----------
+   Bal oldalt a nevek (#skill_list2), jobb oldalt a sávok (#skill_set).
+   Fontos: egy sor magassága mindkét oldalon 27px legyen, különben elcsúsznak! */
+#technical_skill { height: 240px; margin: 15px 0 0; }
+
+#skill_list2 { float: left; margin: -5px 0 0 -30px; }
+#skill_list2 ul {
+  list-style: none;
+  font: 600 15px/27px var(--font-head);   /* sormagasság: 27px */
+  color: var(--text);
+}
+
+#skill_set ul { list-style: none; }
+#skill_set li { padding: 8px 0; margin-left: 30px; } /* 8 + 11 + 8 = 27px */
+
+.progress_container {
+  height: 11px;
+  margin: 0 0 0 90px;
+  width: 270px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--card-2);
+  border-radius: 6px;
+}
+/* a tanár minden sávnak külön osztályt adott (cms, seo, php...).
+   Most mind ugyanúgy néz ki: türkiz -> narancs átmenet */
+.progress_bar, .cms, .seo, .php, .html, .css, .flash, .java {
+  height: 100%;
+  width: 0;                       /* a jQuery animálja ki a title-ben megadott %-ra */
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+
+/* ---------- 12. GALÉRIA ---------- */
+#gallery { padding: 25px 0 25px 40px; width: 900px; }
+#gallery ul { list-style: none; }
+#gallery ul li { display: inline-block; margin: 0 10px 14px 0; }
+#gallery ul li.hidden { display: none; }    /* a szűrő által elrejtett képek */
+#gallery img {
+  display: block;
+  width: 200px; height: 140px;
+  object-fit: cover;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+#gallery a:hover img {
+  transform: translateY(-4px) scale(1.03);
+  border-color: var(--accent);
+  box-shadow: 0 12px 25px -10px rgba(46, 196, 182, .6);
+}
+
+
+/* ---------- 13. FEL / LE GOMBOK (jobb alsó sarok) ---------- */
+.nav_up,
+.nav_down {
+  position: fixed;
+  bottom: 16px;
+  width: 20px; height: 20px;
+  padding: 9px;
+  border-radius: 50%;
+  background: var(--card-2) no-repeat 50% 50%;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  opacity: .8;
+}
+.nav_up   { right: 24px; background-image: url("../img/images/arrow_up.png"); }
+.nav_down { right: 70px; background-image: url("../img/images/arrow_down.png"); }
+.nav_up:hover, .nav_down:hover { border-color: var(--accent); opacity: 1; }
+
+
+/* ---------- 14. ALBUM GOMBOK (galéria szűrő) ---------- */
+.album_tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+.album_tab {
+  padding: 6px 16px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--muted);
+  font: 600 13px var(--font-body);
+  cursor: pointer;
+  transition: all .2s;
+}
+.album_tab:hover { border-color: var(--accent); color: var(--accent); }
+.album_tab.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+
+/* ---------- 15. TOOLTIP (a tanár tipsy pluginjéhez – eddig nem volt hozzá stílus) ---------- */
+.tipsy { padding: 5px; font: 600 11px var(--font-body); position: absolute; z-index: 100000; }
+.tipsy-inner { padding: 4px 8px; border-radius: 6px; background: var(--text); color: var(--card); text-align: center; }
+.tipsy-arrow { position: absolute; width: 0; height: 0; border: 5px dashed transparent; }
+.tipsy-s .tipsy-arrow { top: 0; left: 50%; margin-left: -5px; border-top-color: var(--text); border-bottom: 0; top: auto; bottom: 0; }
+
+
+/* ---------- 16. EGYÉB SZÖVEGEK ---------- */
+.it_interests { margin-top: 14px; }
+.form_intro { color: var(--muted); font-size: 13px; padding: 6px 0 2px; }
+
+.profile_links { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px 0 0; }
+.profile_links a {
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  font-size: 13px;
+}
+.profile_links a:hover { border-color: var(--accent); }
+
+.site_footer p { text-align: center; color: var(--muted); font-size: 12px; padding: 0 0 6px; }
+
+#print_cv { color: var(--accent); }
+
+
+/* ---------- 17. KAPCSOLAT ŰRLAP ---------- */
+#contact-form { margin: 6px 0 10px; }
+#contact-form label {
+  display: block;
+  margin: 12px 0 5px;
+  font: 600 13px var(--font-head);
+  color: var(--text);
+}
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  box-sizing: border-box;                /* a padding ne növelje meg a szélességet */
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card-2);
+  color: var(--text);
+  font: 14px var(--font-body);
+  transition: border-color .2s, box-shadow .2s;
+}
+#contact-form textarea { resize: vertical; min-height: 110px; }
+#contact-form input:focus,
+#contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(46, 196, 182, .2);
+}
+#contact-form .invalid { border-color: var(--error); }
+
+/* robotcsapda: az ember elől el van rejtve */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.submit-button {
+  margin-top: 14px;
+  padding: 10px 28px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+  font: 700 15px var(--font-head);
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s, opacity .2s;
+}
+.submit-button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px var(--accent); }
+.submit-button:disabled { opacity: .6; cursor: wait; transform: none; }
+
+#form-status { min-height: 1.4em; padding: 10px 0 0; font-size: 13px; }
+#form-status.ok    { color: var(--ok); }
+#form-status.error { color: var(--error); }
+
+.recaptcha_note { font-size: 11px; color: var(--muted); padding: 4px 0 0; }
+.recaptcha_note a { text-decoration: underline; }
+/* A Google jobb alsó sarokban lévő jelvényét elrejthetjük, mert a fenti szöveg ott van (a Google ezt engedi) */
+.grecaptcha-badge { visibility: hidden; }
+
+
+/* ---------- 18. MEGJELENÉSI ANIMÁCIÓ ----------
+   A "reveal" osztályt a js/main.js teszi az elemekre, a "shown"-t pedig akkor, amikor a képernyőre érnek. */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.shown { opacity: 1; transform: none; }
+
+/* aki a rendszerében kikapcsolta az animációkat, annak ne mozogjon semmi */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+
+/* ---------- 19. MOBILNÉZET ----------
+   A 960-as rács fix szélességű, ezért kisebb képernyőn felülírjuk:
+   az oszlopok egymás alá kerülnek, és kitöltik a teljes szélességet. */
+@media (max-width: 980px) {
+  body { padding: 12px 0; min-width: 0; }   /* a 960_24_col.css 960px minimum szélességet ad a body-nak */
+  #header,
+  .container_24 { width: auto; margin: 0 12px; }
+
+  .container_24 [class*="grid_"] { float: none; display: block; width: auto; margin: 0 20px; }
+  .container_24 .spacer { display: none; }          /* üres helykitöltők és függőleges vonalak */
+
+  .work_list { float: none; margin: 24px 0 0; }
+  .work_list .available, .work_list h3, .work_list h2 { margin-left: 0; }
+  .work_list h3, .work_list li { width: auto; }
+  .work_list ul { margin-left: 0; }
+  .work_list li { margin-left: 0; }
+
+  .ribbon2, .ribbon_portfolio, .why_me ul { width: auto; }
+  .horisontal_line { width: auto; margin: 24px 20px; }
+
+  #technical_skill { height: auto; overflow: hidden; }
+  #skill_list2 { margin-left: 0; width: 100px; }
+  #skill_list2 li { margin-left: 0; }
+  #skill_set { margin-left: 100px; }
+  #skill_set li { margin-left: 0; }
+  .progress_container { width: auto; margin: 0; }
+
+  #gallery { width: auto; padding: 20px 0; }
+  #gallery ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  #gallery ul li { margin: 0; }
+  #gallery img { width: 100%; height: auto; aspect-ratio: 10 / 7; }
+}
+
+@media (max-width: 600px) {
+  #header { height: 104px; }
+  #header::before { left: 20px; top: 16px; }
+  .social_panel { padding: 14px 16px 0 0; }
+  .social_panel li { margin-left: 10px; }
+  .lang_switch { left: 20px; right: auto; top: 60px; }
+  #theme_toggle { right: 20px; top: 60px; }
+
+  .container_24 [class*="grid_"] { margin: 0 16px; }
+  #name_tittle h1 { font-size: 42px; }
+  #name_tittle li { font-size: 18px; }
+  img.floatLeft { width: 96px; height: 128px; margin-right: 14px; }
+  .item_tittle h3 span.year { float: none; display: inline-block; margin: 4px 0 0; }
+
+  .nav_down { display: none !important; }            /* telefonon elég egy gomb */
+  .nav_up { right: 14px; bottom: 14px; }
+}
+
+
+/* ---------- 20. NYOMTATÁS / PDF ----------
+   A "Save as PDF" gomb a böngésző nyomtatását indítja. Ilyenkor:
+   fehér háttér, fekete szöveg, és eltűnik minden, ami papíron fölösleges. */
+@media print {
+  :root, [data-theme="light"] {
+    --bg: #fff; --card: #fff; --card-2: #eee; --line: #ccc;
+    --text: #111; --muted: #444; --accent: #0f766e; --accent-2: #b45309; --on-accent: #fff;
+  }
+  body { background: #fff; padding: 0; }
+  #header, .nav_up, .nav_down, #contact-form, .form_intro, .album_tabs,
+  #gallery, .ribbon_portfolio, .vertical_line, .vertical_line2,
+  .tipsy, .grecaptcha-badge, .cv_download { display: none !important; }
+  .container_24 { box-shadow: none; border-radius: 0; padding: 0; }
+  #name_tittle h1 { background: none; color: var(--text); -webkit-text-fill-color: var(--text); }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .progress_container, .progress_bar, .cms, .seo, .php, .html, .css, .flash, .java {
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;   /* a sávok színe is nyomtatódjon */
+  }
+  a { text-decoration: none; }
+}
